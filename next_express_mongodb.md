@@ -154,20 +154,12 @@ export default function Home() {
   return (
     <div className="text-center">
       <h1 className="text-4xl font-bold text-gray-800 mb-6">
-        Bem-vindo à Nossa Loja
+        Bem-vindo ao BytesFlix
       </h1>
       <p className="text-xl text-gray-600 mb-8">
-        Gestão de produtos com Next.js e Express
+        Onde todos os filmes estão na tua posse
       </p>
-      
-      <div className="space-x-4">
-        <Link href="/produtos" className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-6 rounded-lg transition-colors">
-          Ver Produtos
-        </Link>
-        <Link href="/api/produtos" className="bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-lg transition-colors" target="_blank">
-          API de Produtos
-        </Link>
-      </div>
+
     </div>
   );
 }
@@ -189,7 +181,7 @@ export default function Navbar() {
 
   return (
     <nav className="bg-slate-900 text-white p-4 flex justify-between items-center">
-      <Link href="/" className="text-2xl font-bold text-blue-400">🛒 TechStore</Link>
+      <Link href="/" className="text-2xl font-bold text-blue-400"> BytesFlix</Link>
 
       <div className="flex space-x-6">
         <Link href="/" className={isActive('/') ? 'bg-blue-600 px-3 py-2 rounded' : 'px-3 py-2 hover:bg-slate-700 rounded'}>

@@ -1,6 +1,6 @@
 require('dotenv').config();
 const connectDB = require('./lib/mongodb');
-const Produto = require('./models/Produto');
+const Produto = require('./models/Movie');
 
 const produtosIniciais = [
   { nome: "Laptop Gaming", preco: 1299.99 },

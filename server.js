@@ -3,7 +3,7 @@ const next = require('next');
 const cors = require('cors');
 require('dotenv').config();
 const connectDB = require('./lib/mongodb');
-const Produto = require('./models/Produto');
+const Movie = require('./models/Movie');
 const dev = process.env.NODE_ENV !== 'production';
 const nextApp = next({ dev });
 const handle = nextApp.getRequestHandler();
@@ -17,40 +17,28 @@ connectDB();
 // ===== ROTAS DA API REST =====
 
 // GET /api/produtos - Carregar todos os produtos
-app.get('/api/produtos', async (req, res) => {
+app.get('/api/movies', async (req, res) => {
   try {
-    const produtos = await Produto.find();  // Busca todos os produtos no MongoDB
-    res.json(produtos);
+    const movies = await Movie.find();  // Busca todos os produtos no MongoDB
+    res.json(movies);
   } catch (error) {
     console.error('Erro ao carregar produtos:', error);
     res.status(500).json({ erro: 'Erro interno do servidor' });
   }
 });
 
-// GET /api/produtos/:id - Carregar um produto específico por ID
-app.get('/api/produtos/:id', async (req, res) => {
-  try {
-    const produto = await Produto.findById(req.params.id);  // Busca produto pelo ID no MongoDB
-    if (!produto) return res.status(404).json({ erro: 'Produto não encontrado' });
-    res.json(produto);
-  } catch (error) {
-    console.error('Erro ao carregar produto:', error);
-    res.status(500).json({ erro: 'Erro interno do servidor' });
-  }
-});
-
 // POST /api/produtos - Criar novo produto
-app.post('/api/produtos', async (req, res) => {
+app.post('/api/movies', async (req, res) => {
   try {
     const { nome, preco } = req.body;  // Extrai dados do body da requisição
     
-    const novoProduto = new Produto({
+    const novoMovie = new Movie({
       nome,
       preco: parseFloat(preco)
     });
     
-    const produtoSalvo = await novoProduto.save();  // Guarda no MongoDB
-    res.status(201).json(produtoSalvo);
+    const movieSalvo = await novoMovie.save();  // Guarda no MongoDB
+    res.status(201).json(movieSalvo);
   } catch (error) {
     console.error('Erro ao criar produto:', error);
     res.status(500).json({ erro: 'Erro interno do servidor' });
@@ -58,31 +46,31 @@ app.post('/api/produtos', async (req, res) => {
 });
 
 // PUT /api/produtos/:id - Atualizar produto existente
-app.put('/api/produtos/:id', async (req, res) => {
+app.put('/api/movies/:id', async (req, res) => {
   try {
-    const produto = await Produto.findByIdAndUpdate(
+    const movie = await movie.findByIdAndUpdate(
       req.params.id,
       req.body,
       { new: true, runValidators: true }  // Retorna documento atualizado e executa validações
     );
     
-    if (!produto) return res.status(404).json({ erro: 'Produto não encontrado' });
-    res.json(produto);
-  } catch (error) {
-    console.error('Erro ao atualizar produto:', error);
+    if (!movie) return res.status(404).json({ erro: 'Filme não encontrado' });
+    res.json(movie);
+  } catch (error) { 
+    console.error('Erro ao atualizar o filme:', error);
     res.status(500).json({ erro: 'Erro interno do servidor' });
   }
 });
 
 // DELETE /api/produtos/:id - Eliminar produto
-app.delete('/api/produtos/:id', async (req, res) => {
+app.delete('/api/movies/:id', async (req, res) => {
   try {
-    const produto = await Produto.findByIdAndDelete(req.params.id);
+    const movie = await movie.findByIdAndDelete(req.params.id);
     
-    if (!produto) return res.status(404).json({ erro: 'Produto não encontrado' });
-    res.json({ mensagem: 'Produto eliminado com sucesso' });
+    if (!movie) return res.status(404).json({ erro: 'Filme não encontrado' });
+    res.json({ mensagem: 'Filme eliminado com sucesso' });
   } catch (error) {
-    console.error('Erro ao eliminar produto:', error);
+    console.error('Erro ao eliminar filme da lista:', error);
     res.status(500).json({ erro: 'Erro interno do servidor' });
   }
 });
