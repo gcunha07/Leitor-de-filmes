@@ -8,10 +8,11 @@ export default function Home() {
         Bem-vindo ao BytesFlix
       </h1>
       <p className="text-xl text-gray-600 mb-8">
-        Onde todos os filmes estão na tua posse
+        Onde avalias os teus filmes da forma que desejas!
       </p>
       <div> 
-        <button >Adicionar Lista</button>
+        <button onClick={'/filmes'} className="text-cente bg-black">Adicionar Lista</button>
+        
       </div>
     </div>
 

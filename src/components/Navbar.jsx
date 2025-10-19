@@ -13,8 +13,8 @@ export default function Navbar() {
         <Link href="/" className={isActive('/') ? 'bg-blue-600 px-3 py-2 rounded' : 'px-3 py-2 hover:bg-slate-700 rounded'}>
           🏠 Início
         </Link>
-        <Link href="/produtos" className={isActive('/produtos') ? 'bg-blue-600 px-3 py-2 rounded' : 'px-3 py-2 hover:bg-slate-700 rounded'}>
-          🧾 Lista de Desejos
+        <Link href="/filmes" className={isActive('/produtos') ? 'bg-blue-600 px-3 py-2 rounded' : 'px-3 py-2 hover:bg-slate-700 rounded'}>
+          🧾 Tuas avaliações
         </Link>
       </div>
     </nav>
