@@ -6,7 +6,7 @@ const produtoSchema = new mongoose.Schema({
   genre: { type: String, required: true },
   watched: { type: Boolean, required: true },
   rating: { type: Number, required: true },
-  createdAt: { type: Date, required: true },
+  createdAt: { type: Date, required: true, default: Date.now },
 
 }, {
   versionKey: false

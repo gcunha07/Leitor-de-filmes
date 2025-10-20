@@ -1,6 +1,12 @@
+import { AllMovies } from '@/components/AllMovies';
+import { useState } from 'react';
+import { AddMovies } from '@/components/AddMovie';
+import { EditarMovies } from '@/components/EditMovie';
 import Link from 'next/link';
 
 export default function Home() {
+  const [addMovie, setAddMovie] = useState(false);
+
   return (
 
     <div className="text-center">
@@ -10,10 +16,14 @@ export default function Home() {
       <p className="text-xl text-gray-600 mb-8">
         Onde avalias os teus filmes da forma que desejas!
       </p>
-      <div> 
-        <button onClick={'/filmes.js'} className="text-cente bg-black">Adicionar Lista</button>
-        <button onClick={'/'}>Ver Lista</button>
+      <div class="space-x-4 mb-8 flex justify-center gap-4">
+        <div>
+          <button onClick={() => setAddMovie(true)} className="text-center p-2 bg-blue-500">Adicionar Filme</button>
+          {addMovie && <AddMovies onClose={() => setAddMovie(false)} />}
+        </div>
       </div>
+
+      <AllMovies />
     </div>
 
   );

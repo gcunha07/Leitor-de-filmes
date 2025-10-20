@@ -1,107 +1,63 @@
-// GET /api/produtos - Carregar todos os produtos
+// Cliente API wrapper padronizado para /api/movies
 export async function carregarMoviesAPI() {
   try {
-    const response = await fetch('/api/produtos')
-    
-    if (!response.ok) {
-      console.error('Erro na resposta:', response.status, response.statusText)
-      throw new Error('Erro ao carregar os filmes')
-    }
-    
-    const data = await response.json()
-    return data
-
+    const response = await fetch('/api/movies')
+    if (!response.ok) throw new Error('Erro ao carregar os filmes')
+    return await response.json()
   } catch (error) {
     console.error('Erro ao carregar os filmes:', error)
     throw error
   }
 }
 
-// GET /api/produtos/:id - Carregar um produto específico por ID
-export async function carregarFilmesPorIdAPI(id) {
+export async function carregarMoviePorIdAPI(id) {
   try {
-    const response = await fetch(`/api/filmes/${id}`)
-    
-    if (!response.ok) {
-      console.error('Erro na resposta:', response.status, response.statusText)
-      throw new Error('Erro ao carregar filme')
-    }
-    
-    const data = await response.json()
-    return data
-
+    const response = await fetch(`/api/movies/${id}`)
+    if (!response.ok) throw new Error('Erro ao carregar filme')
+    return await response.json()
   } catch (error) {
     console.error('Erro ao carregar filme:', error)
     throw error
   }
 }
 
-// POST /api/produtos - Criar novo produto
 export async function adicionarMovieAPI(dadosMovie) {
   try {
-    const response = await fetch('/api/filme', {
+    const response = await fetch('/api/movies', {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(dadosMovie)
     })
-
-    if (!response.ok) {
-      console.error('Erro na resposta:', response.status, response.statusText)
-      throw new Error('Erro ao adicionar filme')
-    }
-    
-    const resultado = await response.json()
-    return resultado
-
+    if (!response.ok) throw new Error('Erro ao adicionar filme')
+    return await response.json()
   } catch (error) {
     console.error('Erro ao adicionar filme:', error)
     throw error
   }
 }
 
-// PUT /api/produtos/:id - Atualizar produto existente
-export async function atualizarProdutoAPI(id, dadosProduto) {
+export async function editarMovieAPI(id, dadosMovie) {
   try {
-    const response = await fetch(`/api/produtos/${id}`, {
+    const response = await fetch(`/api/movies/${id}`, {
       method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(dadosProduto)
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(dadosMovie)
     })
-
-    if (!response.ok) {
-      console.error('Erro na resposta:', response.status, response.statusText)
-      throw new Error('Erro ao atualizar produto')
-    }
-    
-    const resultado = await response.json()
-    return resultado
-
+    if (!response.ok) throw new Error('Erro ao atualizar filme')
+    return await response.json()
   } catch (error) {
-    console.error('Erro ao atualizar produto:', error)
+    console.error('Erro ao atualizar filme:', error)
     throw error
   }
 }
 
-// DELETE /api/produtos/:id - Eliminar produto
-export async function eliminarProdutoAPI(id) {
+export async function eliminarMovieAPI(id) {
   try {
-    const response = await fetch(`/api/produtos/${id}`, { 
-      method: 'DELETE' 
-    })
-    
-    if (!response.ok) {
-      console.error('Erro na resposta:', response.status, response.statusText)
-      throw new Error('Erro ao eliminar produto')
-    }
-
+    const response = await fetch(`/api/movies/${id}`, { method: 'DELETE' })
+    if (!response.ok) throw new Error('Erro ao eliminar filme')
     return true
-
   } catch (error) {
-    console.error('Erro ao eliminar produto:', error)
+    console.error('Erro ao eliminar filme:', error)
     throw error
   }
 }

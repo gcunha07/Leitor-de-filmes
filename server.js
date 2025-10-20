@@ -30,11 +30,14 @@ app.get('/api/movies', async (req, res) => {
 // POST /api/produtos - Criar novo produto
 app.post('/api/movies', async (req, res) => {
   try {
-    const { nome, preco } = req.body;  // Extrai dados do body da requisição
+    const { title, year,genre, watched, rating, createdAt } = req.body;
     
     const novoMovie = new Movie({
-      nome,
-      preco: parseFloat(preco)
+      title, year,
+      genre,
+      watched,
+      rating,
+      createdAt
     });
     
     const movieSalvo = await novoMovie.save();  // Guarda no MongoDB
@@ -45,17 +48,17 @@ app.post('/api/movies', async (req, res) => {
   }
 });
 
-// PUT /api/produtos/:id - Atualizar produto existente
+// PUT /api/movies/:id - Atualizar filme existente
 app.put('/api/movies/:id', async (req, res) => {
   try {
-    const movie = await movie.findByIdAndUpdate(
+    const movieUpdated = await Movie.findByIdAndUpdate(
       req.params.id,
       req.body,
-      { new: true, runValidators: true }  // Retorna documento atualizado e executa validações
+      { new: true, runValidators: true }
     );
-    
-    if (!movie) return res.status(404).json({ erro: 'Filme não encontrado' });
-    res.json(movie);
+
+    if (!movieUpdated) return res.status(404).json({ erro: 'Filme não encontrado' });
+    res.json(movieUpdated);
   } catch (error) { 
     console.error('Erro ao atualizar o filme:', error);
     res.status(500).json({ erro: 'Erro interno do servidor' });
@@ -65,9 +68,9 @@ app.put('/api/movies/:id', async (req, res) => {
 // DELETE /api/produtos/:id - Eliminar produto
 app.delete('/api/movies/:id', async (req, res) => {
   try {
-    const movie = await movie.findByIdAndDelete(req.params.id);
-    
-    if (!movie) return res.status(404).json({ erro: 'Filme não encontrado' });
+    const movieDeleted = await Movie.findByIdAndDelete(req.params.id);
+
+    if (!movieDeleted) return res.status(404).json({ erro: 'Filme não encontrado' });
     res.json({ mensagem: 'Filme eliminado com sucesso' });
   } catch (error) {
     console.error('Erro ao eliminar filme da lista:', error);
@@ -88,6 +91,5 @@ const PORT = process.env.PORT || 3000;
 nextApp.prepare().then(() => {
   app.listen(PORT, () => {
     console.log(`🚀 Servidor Next.js + Express a correr em http://localhost:${PORT}`);
-    console.log(`📡 API disponível em http://localhost:${PORT}/api/produtos`);
   });
 });
