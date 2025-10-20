@@ -1,8 +1,8 @@
 require('dotenv').config();
 const connectDB = require('./lib/mongodb');
-const Produto = require('./models/Movie');
+const Movie = require('./models/Movie');
 
-const produtosIniciais = [
+const MovieIniciais = [
   { nome: "Laptop Gaming", preco: 1299.99 },
   { nome: "Smartphone Pro", preco: 899.5 },
   { nome: "Headphones Bluetooth", preco: 159.99 },
@@ -12,7 +12,7 @@ const produtosIniciais = [
 async function criarDadosIniciais() {
   try {
     await connectDB();
-    await Produto.insertMany(produtosIniciais);
+    await Movie.insertMany(movieIniciais);
     console.log('✅ Dados iniciais criados');
     process.exit(0);
   } catch (error) {

@@ -11,8 +11,8 @@ export default function Home() {
         Onde avalias os teus filmes da forma que desejas!
       </p>
       <div> 
-        <button onClick={'/filmes'} className="text-cente bg-black">Adicionar Lista</button>
-        
+        <button onClick={'/filmes.js'} className="text-cente bg-black">Adicionar Lista</button>
+        <button onClick={'/'}>Ver Lista</button>
       </div>
     </div>
 

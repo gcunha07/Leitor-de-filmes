@@ -1,13 +1,13 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import AddFilmes from '@/components/AddFilmes'
-import { carregarProdutosAPI, eliminarProdutoAPI } from '@/services/api'
+import { carregarMoviesAPI, eliminarMoviesAPI } from '@/services/api'
 
 export default function Movies() {
   const [Movie, setMovie] = useState([])
   const [showAddModal, setShowAddModal] = useState(false)
   const [showEditModal, setShowEditModal] = useState(false)
-  const [produtoToEdit, setProdutoToEdit] = useState(null)
+  const [movieToEdit, setMovieToEdit] = useState(null)
 
   useEffect(() => {
     carregarMovies()
