@@ -17,7 +17,6 @@ export function AddMovies({ onClose } = {}){
 	}
 
 	return (
-		// Overlay/modal wrapper to keep the panel centered and prevent overflow
 		<div className="fixed inset-0 z-50 flex items-center justify-center bg-gray-500 bg-opacity-20">
 			<div className="w-full max-w-xs mx-4 rounded-2xl bg-slate-900 text-white p-4 relative">
 				<button aria-label="Fechar" onClick={() => onClose && onClose()} className="cursor-pointer absolute top-3 right-3 text-white bg-transparent hover:text-gray-300">✕</button>
